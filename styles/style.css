@@ -9,7 +9,6 @@ body {
     overflow: hidden;
 }
 
-
 body::before {
     content: "";
     position: absolute;
@@ -136,6 +135,78 @@ body::before {
     background: red;
 }
 
+/* Jupiter Orbit */
+.orbit.jupiter {
+    width: 300px;
+    height: 300px;
+    animation: spin 20s linear infinite;
+    transform: translate(-50%, -50%);
+}
+.planet.jupiter {
+    background-color: #b96f32;
+    width: 16px;
+    height: 16px;
+}
+
+/* Saturn Orbit */
+.orbit.saturn {
+    width: 360px;
+    height: 360px;
+    animation: spin 25s linear infinite;
+    transform: translate(-50%, -50%);
+}
+.planet.saturn {
+    background-color: #d8c47d;
+    width: 14px;
+    height: 14px;
+}
+
+/* Uranus Orbit */
+.orbit.uranus {
+    width: 420px;
+    height: 420px;
+    animation: spin 30s linear infinite;
+    transform: translate(-50%, -50%);
+}
+.planet.uranus {
+    background-color: #89d1e4;
+    width: 12px;
+    height: 12px;
+}
+
+/* Neptune Orbit */
+.orbit.neptune {
+    width: 480px;
+    height: 480px;
+    animation: spin 35s linear infinite;
+    transform: translate(-50%, -50%);
+}
+.planet.neptune {
+    background-color: #4666ff;
+    width: 12px;
+    height: 12px;
+}
+
+/* Pluto */
+.pluto {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ccc;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    animation: pluto-path 60s linear infinite;
+}
+
+@keyframes pluto-path {
+    0%   { transform: translate(270px, 0); }
+    25%  { transform: translate(200px, 50px); }
+    50%  { transform: translate(130px, 0); }
+    75%  { transform: translate(200px, -50px); }
+    100% { transform: translate(270px, 0); }
+}
+
 @keyframes spin {
     0% {
         transform: translate(-50%, -50%) rotate(0deg);
@@ -145,6 +216,27 @@ body::before {
     }
 }
 
+
+.planet::after,
+.pluto::after {
+    content: attr(data-label);
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.planet:hover::after,
+.pluto:hover::after {
+    opacity: 1;
+}
+
+/* Background Stars */
 .stars {
     position: absolute;
     width: 100%;
@@ -167,4 +259,93 @@ body::before {
         1100px 500px white, 1300px 100px white, 1500px 400px white,
         1700px 300px white, 1900px 100px white, 2100px 600px white;
 }
+
+.asteroid-belt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 360px;
+    height: 360px;
+    transform: translate(-50%, -50%);
+    animation: spin 60s linear infinite;
+    z-index: 0;
+}
+
+.asteroid {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+}
+
+
+
+
+@keyframes sun-pulse {
+    0% {
+        box-shadow: 0 0 30px 10px #ffd700, 0 0 60px 20px rgba(255, 215, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 40px 15px #ffd700, 0 0 80px 30px rgba(255, 215, 0, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 30px 10px #ffd700, 0 0 60px 20px rgba(255, 215, 0, 0.4);
+    }
+}
+
+.sun {
+    animation: sun-pulse 10s ease-in-out infinite;
+}
+
+.planet.saturn::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotateX(60deg);
+}
+
+
+.comet {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, white, transparent);
+    top: 10%;
+    left: -50px;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+    animation: comet-move 20s linear infinite;
+    z-index: 2;
+}
+
+@keyframes comet-move {
+    0% {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        transform: translate(600px, 400px) rotate(45deg);
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(1200px, 800px) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+
 
